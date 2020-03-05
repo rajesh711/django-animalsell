@@ -1,0 +1,219 @@
+{% extends "animal_tmp/base.html" %}
+{% block content %}
+{% load static %}
+<div class="section-heading">
+ </div>
+ <div class="col-lg-12">
+     <div class="row display_animal">
+         <div class="col-lg-12 display_pagination">
+             <div class="row">
+                 {% for animal in animals %}
+                 <div class="col-lg-3 col-md-6 mb-4 post">
+                     <div class="card blog-box-content h-55">
+                         <div class="show-animal-all-details animal_model">
+                             <div class="row">
+                                 <div class="col-md-12">
+                                      <a href="{% url 'post-detail' animal.id %}">
+                                     <div  style="height: auto; width:100% "  id="animal-details">
+
+                                         <div class="animal_img "
+                                              style=" background-image: url({{ animal.front_image.url }});
+                                            background-size: cover;
+                                            background-position: center center;
+                                            min-height: 200px;
+                                            width: 100%;">&nbsp;</div>
+                                     </div>
+                                      </a>
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="row">
+                                     <div class="col-md-6 col-6 pr-0" style="">
+                                         <p style="color: #FF9933;"><b>{{ animal.en_type }}</b></p>
+                                     </div>
+                                     <div class="col-md-6 col-6" style="">
+                                         <p style="color: #FF9933;"><b>{{ animal.animal_price }} Rs</b></p>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="row">
+                                     <div class="col-md-6 col-6">
+                                         <p>Animal Milk</p>
+                                     </div>
+                                     <div class="col-md-6 col-6">
+                                         <p>{{ animal.animal_milk }} Lt.</p>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="row">
+                                     <div class="col-md-6 col-6">
+                                         <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block; max-width: 100%;">
+                                             <b>{{ animal.user_name }}</b></p>
+                                     </div>
+                                     <div class="col-md-6 col-6">
+                                         <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block; max-width: 100%;">
+                                             {{ animal.user_contact }}</p>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-md-12">
+                                 <div class="row">
+                                       <div class="col-md-4">
+                                         <a href="{% url 'post-update' animal.pk %}">
+                                         <p class="text-danger edit-animal-detail">
+                                             <i class="fa fa-edit" style="font-size:20px; color: #FF9933;"></i>
+                                         </p>
+                                     </a>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <a href="{% url 'user-post-delete' animal.pk %}">
+                                         <p class="text-danger delete_animal_detail" >
+                                             <i class="fa fa-trash-o" style="font-size:20px; color: #FF9933;"></i>
+                                         </p>
+                                     </a>
+                                     </div>
+                                     <div class="col-md-4">
+                                         {% if animal.approved_status == 0 %}
+                                         <i class="fa fa-ban" style="font-size:20px;color:red;"></i>
+                                         {% endif %}
+                                     </div>
+                                     <div class="col-md-12">
+                                         <p class=""style="color: #FF9933;">Information</p>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-md-12">
+                                 <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block; max-width: 100%;">
+                                     {{ animal.animal_info }}
+                                 </p>
+                             </div>
+                         </div>
+
+                         <div class="card-footer">
+                             <div class="row">
+                                 <div class="col-md-12 like_unlike_parents d-flex align-items-center justify-content-around" style="padding: 0px;">
+                                     <div class="like-jon" style=" display: inline-block;">
+                                         <a href="JavaScript:void(0);" class='pointer'>
+                                             <span class="like_unlike_animal" data-animals-id="{{ animal.pk }}" change_like="0"
+                                                   data-like-unlike-url="{% url 'ajax_like_unlike' %}" change_like_id="">
+                                                 <i class="fa fa-thumbs-up like-btn
+                                                 {% if animal.author_id == user.id and animal.pk == animal.animal_id and animal.like_unlike == 0 %}
+                                                   active_like {% endif %}" style=" font-size: 25px;" ></i>
+                                             </span>
+                                         </a>
+                                         <span class="display_like">{{ animal.totallikes }}</span>
+                                     </div>
+                                     <div class="unlike-jon" style="display: inline-block;">
+                                         <a href="JavaScript:void(0);"class='pointer'>
+                                             <span class="like_unlike_animal"data-animals-id="{{ animal.pk }}" change_like="1"
+                                                   data-like-unlike-url="{% url 'ajax_like_unlike' %}">
+                                                 <i class="fa fa-thumbs-down dislike-btn
+                                                 {% if animal.author_id == user.id and animal.pk == animal.animal_id and animal.like_unlike == 1 %}
+                                                   active_like {% endif %} " style="font-size: 25px" ></i>
+                                             </span>
+                                         </a>
+                                         <span class="display_unlike">{{ animal.totalunlikes }}</span>
+                                     </div>
+                                     <div class="like-comment " style="display: inline-block;">
+                                         <a href="JavaScript:void(0);">  <span class="comment_animal animal_comment"
+                                                                               data-animals-id="{{ animal.pk }}"
+                                                                               data-animal-comment-url="{%  url 'ajax_comments' %}">
+                                             <i class="fa fa-comments-o" style="font-size: 25px "></i>
+                                         </span>
+                                         </a>
+                                         <span class="display_comment">{{ animal.totalcomment }}</span>
+                                     </div>
+                                     <div class="like-jon" style="display: inline-block;">
+                                         <span class="badge " style=" font-size: 10px; background-color: #FF9933;  font-style:italic;color:#ffffff;border-radius: 20px;  width:50px;padding-top:5px;padding-left:3px; margin-left: -5px; padding-right: 5px;" >
+                                             SOLD
+                                         </span>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 {% endfor %}
+             </div>
+         </div>
+     </div>
+ </div>
+
+ <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
+      <div class="modal-dialog animal_comments_display" role="document">
+
+           <!--  content -->
+      </div>
+    </div>
+<div class="text-center">
+    <a href="javascript:void(0);"style="display: none;" class="btn btn-default btn-rounded mb-4 comment_form" data-toggle="modal"
+       data-target="#modalContactForm">comment form
+    </a>
+</div>
+
+<script>
+    $(document).on('click','.animal_comment', function(){
+      var current = $(this);
+      var animalId = current.attr("data-animals-id");
+    var url = current.attr("data-animal-comment-url");
+    $(".comment_form").click();
+
+    $.ajax({                       // initialize an AJAX request
+        url: url,
+        type: 'POST',
+        data: {
+        animalId: animalId,
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(response){
+         $(".animal_comments_display").html(response);
+        },
+        error: function () {
+            alert("error");
+        }
+      });
+ });
+
+ $(document).on('click','.comment-data', function(){
+    var current = $(this);
+    var name = $("#user-name").val();
+    var user_contact = $("#user-contact").val();
+    var comment = $("#user-comment").val();
+    var animalId = $('#comment-form').attr("data-animals-comment-id");
+    var url = $('#comment-form').attr("data-comment-save-url");
+    $(".lodder_display_maddel").show();
+        $.ajax({                       // initialize an AJAX request
+        url: url,
+        type: 'POST',
+        data: {
+        animalId: animalId,
+        name:name,
+        user_contact:user_contact,
+        comment:comment,
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(response){
+         alert(response)
+         $('#modalContactForm').modal('hide');
+          location.reload(true);
+        },
+        error: function () {
+            alert("error");
+            $('#modalContactForm').modal('hide');
+             location.reload(true);
+        }
+      });
+
+ });
+
+</script>
+<div class="lodder_display_maddel">
+
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw animal-loader"></i>
+
+  </div>
+{% endblock content %}

@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <!-- Title -->
+      {% if title %}
+        <title>Animal Sell - {{ title }}</title>
+    {% else %}
+        <title>Animal Sell</title>
+    {% endif %}
+  <title></title>
+  <!-- Favicon -->
+    <link rel="icon" href="{% static  'img/core-img/favicon.ico' %}">
+  <!-- Core Stylesheet -->
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="{% static  'style.css' %}">
+</head>
+<body>
+ <!-- ##### Header Area Start ##### -->
+  <header class="header-area">
+    <!-- Top Header Area -->
+    <div class="top-header-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="top-header-content d-flex align-items-center justify-content-between">
+              <div class="top-header-meta text-right">
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="info@5exceptions.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:  info@5exceptions.com</span></a>
+                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+91 7697307036"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 7697307036</span></a>
+        <select id="language_dropdown" class="language_dropdown">
+          <option style="" value="">select lang</option>
+          <option style="" value="1"  selected="selected" data-imagesrc="{% static 'img/core-img/india-flag-1.png' %}"> <b>&nbsp;&nbsp;हिंदी</b></option>
+          <option style="" value="2"  data-imagesrc="{% static 'img/core-img/india-flag-1.png' %}"><b>&nbsp;&nbsp;मराठ</b></option>
+          <option style="" value="3"  data-imagesrc="{% static 'img/core-img/us_flag.png' %}"><b>&nbsp;&nbsp;English</b></option>
+        </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div class="famie-main-menu">
+      <div class="classy-nav-container breakpoint-off">
+        <div class="container">
+          <!-- Menu -->
+          <nav class="classy-navbar justify-content-between" id="famieNav">
+            <!-- Nav Brand -->
+            <a href="{% url 'animal-list' %}" class="nav-brand"><img class=" article-img" src="{% static 'img/core-img/animal_sale.svg' %}"></a>
+            <!-- Navbar Toggler -->
+            <div class="classy-navbar-toggler">
+              <span class="navbarToggler"><span></span><span></span><span></span></span>
+            </div>
+            <!-- Menu -->
+            <div class="classy-menu">
+              <!-- Close Button -->
+              <div class="classycloseIcon">
+                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+              </div>
+              <!-- Navbar Start -->
+              <div class="classynav">
+                <ul>
+                  <li class="active"><a href="{% url 'animal-list' %}">SEARCH ANIMAL</a></li>
+                  {% if user.is_authenticated %}
+                    <li><a href="{% url 'sell-animal' %}">SELL ANIMAL</a></li>
+                    <li><a href="{% url 'user-posts' %}">MY ANIMAL</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                  <li><a  href="{% url 'login' %}">Login</a></li>
+                  <li><a  href="{% url 'register' %}">Register</a></li>
+              {% endif %}
+                </ul>
+              </div>
+              <!-- Navbar End -->
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ##### Header Area End ##### -->
+
+  <!-- ##### Farming Practice Area Start ##### -->
+  <section class="section-padding-100-50">
+    <div class="container" style="min-height:450px; !important">
+      <div class="row">
+        <div class="col-12">
+          <!-- Section Heading -->
+        </div>
+            {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+      </div>
+      </div>
+
+  </section>
+  <!-- ##### Mid Area End ##### -->
+
+  <!-- ##### Footer Area Start ##### -->
+  <footer class="footer-area">
+    <div class="copywrite-area">
+      <div class="container">
+        <div class="copywrite-text">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <p>
+Copyright &copy; &nbsp;<script>document.write(new Date().getFullYear());</script> All rights reserved |
+</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ##### Footer Area End ##### -->
+
+  <!-- ##### All Javascript Files ##### -->
+  <!-- custom js -->
+  <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
+     <script src= "{% static 'js/popper.min.js' %}"></script>
+  <!-- Bootstrap js -->
+   <script src= "{% static 'js/bootstrap.min.js' %}"></script>
+  <!-- Owl Carousel js -->
+   <script src= "{% static 'js/owl.carousel.min.js'  %}"></script>
+  <!-- Classynav -->
+   <script src= "{% static 'js/classynav.js' %}"></script>
+  <!-- Wow js -->
+   <script src= "{%  static 'js/wow.min.js' %}"></script>
+  <!-- Sticky js -->
+   <script src= "{% static 'js/jquery.sticky.js' %}"></script>
+  <!-- Magnific Popup js -->
+   <script src= "{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <!-- Scrollup js -->
+
+  <!-- Jarallax js -->
+   <script src= "{% static 'js/jarallax.min.js' %}"></script>
+  <!-- Jarallax Video js -->
+  <!-- Active js -->
+  <script src= "{% static 'js/active.js' %}"></script>
+
+
+  <script src= "{% static 'custom.js' %}"></script>
+</body>
+
+</html>

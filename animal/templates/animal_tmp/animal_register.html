@@ -1,0 +1,255 @@
+
+{% extends "animal_tmp/base.html" %}
+{% block content %}
+{% load static %}
+<div class="col-md-12 mb-3 md-form">
+        <form id="msform" method="post" novalidate  data-cities-url="{% url 'ajax_load_type' %}" enctype="multipart/form-data">
+            <!-- progressbar -->
+            {% csrf_token %}
+            <ul id="progressbar">
+                <li class="active" style="">Animal Details</li>
+                <li>User Details</li>
+              </ul>
+            <fieldset id="animal_information">
+            <h2 class="fs-title">Animal Details</h2>
+              <div class="row">
+                  <div class="col-md-12 md-form mb-3">
+
+                      <div class="form-group">
+                          <label for="validationDefault22" class="">Select Animal Group </label>
+                          {{ form.animal_group }}
+                      </div>
+                  </div>
+                  <div class="col-md-6 mb-3 md-form  type_class">
+
+                  <div class="form-group animal_type_check">
+                       <label for="validationDefault22" class="">Select Animal Breed </label>
+                        {{ form.animal_breed }}
+                 </div>
+              </div>
+                 <div class="col-md-6 md-form" id="milk_hide">
+                      <div class="form-group">
+                          <label for="validationDefault22" class="">Select Animal Milk </label>
+                        {{ form.animal_milk }}
+                      </div>
+                   </div>
+				    <div class="col-md-6 mb-3 md-form" id="child_hide">
+				      <label for="validationDefault22" class="register_animal">total Child</label>
+				                    {{ form.animal_child }}
+				    </div>
+				    <div class="col-md-6 mb-3 md-form">
+				      <label for="validationDefault22" class="register_animal">Animal Age</label>
+				                    {{ form.animal_age }}
+				    </div>
+
+                  <div class="col-md-6 mb-3 md-form" id="weight_hide">
+                      <label for="validationDefault22" class="register_animal">Animal Weight (KG) </label>
+				      {{ form.animal_weight}}
+                  </div>
+                  <div class="col-md-6 mb-3 md-form" id="price_hide">
+                      <label for="validationDefault22" class="register_animal">Price</label>
+				      {{ form.animal_price}}
+                  </div>
+              </div>
+		         <div class="row">
+                     <div class="col-md-12 mb-1  md-form">
+                         <label for="validationDefault22" class="register_animal">Color</label>
+                     </div>
+                 </div>
+            <div class="row">
+                <div class="col-md-4 mb-3 md-form">
+                    <div class="form-check-inline">
+                        <label for="id_animal_color_0" class="dispaly_color {% if object.animal_color == '1' %} color_active {% endif %}"
+                               id="color_bw"></label>Black White
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 md-form">
+                    <div class="form-check-inline">
+                        <label for="id_animal_color_1" class="dispaly_color {% if object.animal_color == '2' %} color_active {% endif %}"
+                               id="color_w"></label>White
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3 md-form">
+                    <div class="form-check-inline disabled">
+                        <label for="id_animal_color_2" class="dispaly_color {% if not object.animal_color %} color_active {% endif %} {% if object.animal_color == '3' %} color_active {% endif %}"
+                               id="color_b"></label>Black
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                 <div class="col-md-4 mb-3 md-form">
+                     <div class="form-check-inline disabled">
+                         <label for="id_animal_color_3" class="dispaly_color {% if object.animal_color == '4' %} color_active {% endif %}"
+                                id="color_lb"></label>Light Black
+                     </div>
+                 </div>
+                 <div class="col-md-4 mb-3 md-form">
+                     <div class="form-check-inline disabled">
+                         <label for="id_animal_color_4"class="dispaly_color {% if object.animal_color == '5' %} color_active {% endif %}"
+                                id="color_brw"></label>Brown White
+
+                     </div>
+                 </div>
+                 <div class="col-md-4 mb-3 md-form">
+                     <div class="form-check-inline disabled">
+                         <label for="id_animal_color_5"class="dispaly_color {% if object.animal_color == '6' %} color_active {% endif %}"
+                                id="color_brown"></label>Brown
+
+                     </div>
+                 </div>
+                 {{ form.animal_color }}
+             </div>
+            <div class="row">
+                <div class="col-md-12 mb-3 md-form">
+                    <label for="animal_discription" class="register_animal">Animal Description</label>
+                   {{ form.animal_info }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3 md-form"></div>
+               	<label for="validationDefault22" class="register_animal"style="margin-left: 15px;">Animal Photo</label>
+            </div>
+            <div class="row">
+                <div class="col-md-3 mb-3 md-form " style="text-align: center;">
+                    <div class="image_frontclick image_ponter" style="background-color:	#eeeeee; height:135px; width: 100%;margin: 0 auto;">
+                    {% if object.front_image.url %}
+                        <img src="{{ object.front_image.url }}"  />
+                        {% else %}
+                    <i class="fa fa-plus fa-2x" aria-hidden="true" style="margin-top: 35px; color: #FF9933; "></i>
+                        <p>Add photo</p>
+                        {% endif %}
+		       	  	</div>
+                    <label style="color: #19161b;" for="validationDefault22" class="register_animal">Front</label><br>
+                        {{ form.front_image }}
+                </div>
+                <div class="col-md-3 mb-3 md-form" style="text-align: center;">
+                    <div class="image_backclick image_ponter" style="background-color:#eeeeee; height:135px; width: 100%;margin: 0 auto; background-image:none;">
+                    {% if object.back_image.url %}
+                        <img src="{{ object.back_image.url }}"  />
+                        {% else %}
+                        <i class="fa fa-plus fa-2x" aria-hidden="true" style="margin-top: 35px; color: #FF9933; "></i>
+                        <p>Add photo</p>
+                        {% endif %}
+		       	  	</div>
+                   	 <label style="color: #19161b;" for="validationDefault22" class="register_animal">Back</label>
+		       	  	    {{ form.back_image }}
+	             </div>
+                <div class="col-md-3 mb-3 md-form" style="text-align: center;">
+                    <div class="image_leftclick image_ponter" style="background-color:#eeeeee; height:135px; width: 100%;margin: 0 auto; background-image:none;">
+                        {% if object.left_image.url %}
+                        <img src="{{ object.left_image.url }}"  />
+                        {% else %}
+                        <i class="fa fa-plus fa-2x" aria-hidden="true" style="margin-top: 35px; color: #FF9933; "></i>
+                        <p>Add photo</p>
+                        {% endif %}
+                    </div>
+                    <label style="color: #19161b;" for="validationDefault22" class="register_animal">Left</label>
+		       	  	{{ form.left_image }}
+                </div>
+                <div class="col-md-3 mb-3 md-form" style="text-align: center;">
+                    <div class="image_rightclick image_ponter" style="background-color:	#eeeeee; height:135px; width: 100%;margin: 0 auto; background-image:none;">
+                        {% if object.right_image.url %}
+                        <img src="{{ object.right_image.url }}"  />
+                        {% else %}
+                        <i class="fa fa-plus fa-2x" aria-hidden="true" style="margin-top: 35px; color: #FF9933; "></i>
+                        <p>Add photo</p>
+                        {% endif %}
+	       	    	</div>
+                    <label style="color: #19161b;" for="validationDefault22" class="register_animal">Right</label>
+                   {{ form.right_image }}
+                </div>
+            </div>
+            <input type="button" name="next"  class="next action-button" value="Next" style="float: right;" />
+        </fieldset>
+            <fieldset id="owner_information">
+                <h2 class="fs-title">User Details</h2>
+                 <div class="row">
+				    <div class="col-md-6 mb-3 md-form">
+				      <label for="validationDefault22" class="register_animal">Name</label>
+				         {{ form.user_name }}
+				    </div>
+				    <div class="col-md-6 mb-3 md-form">
+				      <label for="validationDefault22" class="register_animal">Mobile No.</label>
+				      {{ form.user_contact }}
+				    </div>
+				  </div>
+                <div class="row">
+				    <div class="col-md-12 mb-3 md-form">
+                        <label for="validationDefault22" class="register_animal">Address</label>
+                       {{ form.user_address }}
+				    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3 md-form">
+                        <label for="validationDefault22" class="register_animal">Village</label>
+                         {{ form.user_village }}
+                    </div>
+                    <div class="col-md-6 mb-3 md-form">
+                        <label for="validationDefault22" class="register_animal">Tehsil (Block)</label>
+                        {{ form.user_teh}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3 md-form">
+                        <label for="validationDefault22" class="register_animal">District / City</label>
+                       {{ form.user_dist}}
+                    </div>
+                    <div class="col-md-6 mb-3 md-form">
+                        <div class="form-group">
+                            <label>State</label>
+                            {{ form.user_state_id }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3 md-form">
+                        <div class="form-group">
+                            <label>Country</label>
+                            {{ form.user_country_id }}
+                        </div>
+                    </div>
+                </div>
+                        {{ form.user_late}}
+                        {{ form.user_long}}
+                <input type="submit" name="submit" class="submit action-button" value="Save"/>
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+            </fieldset>
+        </form>
+</div>
+<script>
+$(document).ready(function(){
+
+          var groupId  = 1;
+    var url = $("#msform").attr("data-cities-url");
+    change_animal_type(groupId,url);
+});
+
+    $('#animal_group').on('change', function(){
+      var groupId  = $(this).val();
+var url = $("#msform").attr("data-cities-url");
+ change_animal_type(groupId,url);
+});
+function  change_animal_type(groupId,url){
+ $.ajax({                       // initialize an AJAX request
+        url: url,
+        type: 'POST',
+        data: {
+        groupId: groupId,
+        csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(response){
+         $("#animal_grouptype option").remove();
+        $.each(response.data, function( key, value ) {
+             $("#animal_grouptype").append(`<option value="`+value.id+`">`+value.en_type+`</option>`);
+        });
+
+        },
+        error: function () {
+            alert("error");
+        }
+      });
+}
+</script>
+{% endblock content %}
+
+

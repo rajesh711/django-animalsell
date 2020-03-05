@@ -1,0 +1,258 @@
+{% extends "animal_tmp/base.html" %}
+{% block content %}
+{% load static %}
+{% for object in animals %}
+<div class="card">
+    <div class="container-fliud">
+        <div class="wrapper row">
+            <div class="preview col-md-4">
+                <div class="preview-pic tab-content">
+                    <div class="tab-pane active" id="pic-1"><img src="{{ object.front_image.url }} " /></div>
+                    <div class="tab-pane" id="pic-2"><img src="{{ object.back_image.url }}" /></div>
+                    <div class="tab-pane" id="pic-3"><img src="{{ object.left_image.url }}" /></div>
+                    <div class="tab-pane" id="pic-4"><img src="{{ object.right_image.url }}" /></div>
+
+                    <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{ object.front_image.url }}" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img src="{{ object.back_image.url }}" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img src="{{ object.left_image.url }}" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img src="{{ object.right_image.url }}" /></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="details col-md-8">
+                <p class="product-title" style="color: #FF9933; font-size: 20px;">ANIMAL DESCRIPTION</p>
+                <div class="row">
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Animal Breed</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px;"><b>{{ object.en_type }}</b></p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Price</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px;">Rs.{{ object.animal_price }} /-</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Animal Age</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px;" >{{ object.animal_age }} Year</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Milk</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px;" >{{ object.animal_milk }} Liter</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Color</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+
+                        <p style="font-size: 15px;" >
+                            {% if object.animal_color == '1' %}Black White
+                            {% elif object.animal_color == '2' %}White
+                            {% elif object.animal_color == '3'  %}Black
+                            {% elif object.animal_color == '4'  %}Light Black
+                            {% elif object.animal_color == '5'  %}Brown White
+                            {% else  %}Brown
+                            {% endif %}
+
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Animal Weight (KG)</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px;" >{{ object.animal_weight }} approx </p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Total Child</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px;" >{{ object.animal_child }}</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;">Information</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px;" >{{ object.animal_info }} </p>
+                    </div>
+                    <div class="col-md-12" style="margin-top:30px">
+                        <p class="product-title" style="color: #FF9933; font-size: 20px;">Seller Details</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="color: #FF9933;font-size: 15px;font-style:bold;">
+                            Seller Name</p>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <p style="font-size: 15px; "><b>{{ object.user_name }} </b></p>
+                    </div>
+                    <div class="col-md-4 col-4">
+                        <p style="color: #FF9933;font-size: 15px;">Contact</p>
+                    </div>
+                    <div class="col-md-8 col-8">
+                        <span style=" text-align: center;font-size:15px;background-color:#FF9933;color: white; width:auto;padding: 10px;
+                         height: 45px;">
+                            <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{ object.user_contact }} </span>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <p style="color: #FF9933;font-size: 15px; margin-left:px;">Address</p>
+                    </div>
+                    <div class="col-md-12 col-12">
+                        <p style="margin-top:0px;">{{ object.user_address }}</br>{{ object.user_village }}
+                            &nbsp;{{ object.user_teh }}&nbsp;{{ object.user_dist }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+
+/*****************globals*************/
+
+
+img {
+  max-width: 100%; }
+
+.preview {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  @media screen and (max-width: 996px) {
+    .preview {
+      margin-bottom: 20px; } }
+
+.preview-pic {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.preview-thumbnail.nav-tabs {
+  border: none;
+  margin-top: 15px; }
+  .preview-thumbnail.nav-tabs li {
+    width: 18%;
+    margin-right: 2.5%; }
+    .preview-thumbnail.nav-tabs li img {
+      max-width: 100%;
+      display: block; }
+    .preview-thumbnail.nav-tabs li a {
+      padding: 0;
+      margin: 0; }
+    .preview-thumbnail.nav-tabs li:last-of-type {
+      margin-right: 0; }
+
+.tab-content {
+  overflow: hidden; }
+  .tab-content img {
+    width: 100%;
+    -webkit-animation-name: opacity;
+            animation-name: opacity;
+    -webkit-animation-duration: .3s;
+            animation-duration: .3s; }
+
+.card {
+  background: #eee;
+  padding: 3em;
+  line-height: 1.5em; }
+
+@media screen and (min-width: 997px) {
+  .wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; } }
+
+.details {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.colors {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.product-title, .price, .sizes, .colors {
+  text-transform: UPPERCASE;
+  font-weight: bold; }
+
+
+.product-title, .rating, .product-description, .price, .vote, .sizes {
+  margin-bottom: 15px; }
+
+.product-title {
+  margin-top: 0; }
+
+.size {
+  margin-right: 10px; }
+  .size:first-of-type {
+    margin-left: 40px; }
+
+
+
+.not-available {
+  text-align: center;
+  line-height: 2em; }
+  .not-available:before {
+    font-family: fontawesome;
+    content: "\f00d";
+    color: #fff; }
+
+.orange {
+  color: #FF9933; }
+
+/*.green {
+  background: #85ad00; }
+
+.blue {
+  background: #0076ad; }*/
+
+.tooltip-inner {
+  padding: 1.3em; }
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+/*# sourceMappingURL=style.css.map */
+</style>
+
+{% endfor %}
+{% endblock content %}
