@@ -4,29 +4,6 @@ from .models import Post, Country, State, Group, Type, Comments
 from django.core.validators import RegexValidator
 
 
-# class PostListView(ListView):
-#     model = Post
-#     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
-#     context_object_name = 'posts'
-#     ordering = ['-date_posted']
-#     paginate_by = 3
-
-
-# class UserPostListView(ListView):
-#     model = Post
-#     template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
-#     context_object_name = 'posts'
-#     paginate_by = 5
-#
-#     def get_queryset(self):
-#         user = get_object_or_404(User, username=self.kwargs.get('username'))
-#         return Post.objects.filter(author=user).order_by('-date_posted')
-
-
-# class PostDetailView(DetailView):
-#     model = Post
-
-
 def load_country():
     # country_id = self.GET.get('country')
     country = Country.objects.all()
@@ -63,22 +40,24 @@ class PostCreateView(forms.ModelForm):
                                     , label='Age', required=False, initial=8)
     animal_weight = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'form-control'})
                                        , label='Weight(KG)', required=False, initial=250)
-    animal_info = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', "rows": 2, "cols": 100})
-                                  , label='Information', required=False)
+    animal_info = forms.CharField(
+        widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'animal_info', "rows": 2, "cols": 100})
+        , label='Information', required=False)
     animal_price = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'})
                                    , label='Price', required=False, initial=25000)
-    front_image = ImageField(required=False, label="Front", widget=forms.FileInput)
+    front_image = ImageField(required=False, label="Front", widget=forms.FileInput(attrs={'class': 'form-control',
+                                                                                          'id': 'id_front_image'}))
     back_image = ImageField(required=False, label="Back", widget=forms.FileInput)
     left_image = ImageField(required=False, label="Left", widget=forms.FileInput)
     right_image = ImageField(required=False, label="Right", widget=forms.FileInput)
 
-    user_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'})
+    user_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'user_name'})
                                 , label='Name', required=False)
-    user_contact = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}),
-                                   max_length=15, label='Enter Mobile No', required=True)
+    user_contact = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'user_contact'}),
+                                   max_length=15, label='Enter Mobile No', required=False)
     user_village = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'})
                                    , max_length=15, label='Village', required=False)
-    user_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', "rows": 2, "cols": 100})
+    user_address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'user_address', "rows": 2, "cols": 100})
                                    , label='Information', required=False)
     user_teh = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'})
                                , label='Tehsil (Block)', required=False)
@@ -132,9 +111,9 @@ class CommentCreateView(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'user-name'})
                            , label='Name', required=False)
     user_contact = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'user-contact'}),
-                                   max_length=15, label='Enter Mobile No', required=True)
+                                   max_length=15, label='Enter Mobile No', required=False)
     comment = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'user-comment', "rows": 2,
-                                                           "cols": 100}),label='Information', required=False)
+                                                           "cols": 100}), label='Information', required=False)
 
     class Meta:
         model = Comments

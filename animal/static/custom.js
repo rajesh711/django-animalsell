@@ -10,6 +10,14 @@ var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
 
+var animal_info  = $('#animal_info').val();
+if(animal_info ==''){
+    var a=document.getElementById('error_animal_info');
+    a.innerHTML='Please required field';
+    a.style.color="red";
+    return false;
+ }
+
   if(animating) return false;
   animating = true;
 
@@ -85,6 +93,54 @@ $(".previous").click(function(){
     easing: 'easeInOutBack'
   });
 });
+
+$(".submit").click(function(){
+
+var user_name=document.getElementById('user_name').value;
+if(user_name.length==0)
+        {
+
+          var a =  document.getElementById("error_user_name");
+                  a.innerHTML='Please enter your name';
+                  a.style.color="red";
+            return false;
+        }
+
+   var user_contact=document.getElementById('user_contact').value;
+    var mobilecheck=/^[0-9+]{10,15}$/;
+
+
+         if(user_contact==""){
+                 var a =  document.getElementById("error_user_contact");
+                  a.innerHTML='Please enter Contact No';
+                  a.style.color="red";
+                 return false;
+
+
+         }
+         if(!mobilecheck.test(user_contact))
+         {
+
+          var a =  document.getElementById("error_user_contact");
+                  a.innerHTML='Phone number must be entered in the format: 999999999  Up to 15 digits allowed';
+                  a.style.color="red";
+            return false;
+         }
+
+
+
+    var user_address=document.getElementById('user_address').value;
+    if(user_address.length=='')
+        {
+
+          var a =  document.getElementById("error_user_address");
+                  a.innerHTML='Please enter your address ';
+                  a.style.color="red";
+            return false;
+        }
+});
+
+
 
 $('.image_frontclick').on('click', function() {
     $('#id_front_image').trigger('click');
@@ -174,4 +230,3 @@ $('.dispaly_color').removeClass('color_active');
 $(this).addClass('color_active');
 
 });
-

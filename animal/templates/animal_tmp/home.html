@@ -189,9 +189,9 @@ $(document).on('click','.animal_comment', function(){
             alert("error");
         }
       });
- });
+  });
 
- $(document).on('click','.comment-data', function(){
+  $(document).on('click','.comment-data', function(){
     var current = $(this);
     var name = $("#user-name").val();
     var user_contact = $("#user-contact").val();
@@ -210,7 +210,7 @@ $(document).on('click','.animal_comment', function(){
         csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function(response){
-         alert(response)
+         alert(response + ': Your comment has been sent for approval')
          $('#modalContactForm').modal('hide');
           location.reload(true);
         },
@@ -220,7 +220,6 @@ $(document).on('click','.animal_comment', function(){
              location.reload(true);
         }
       });
-
  });
 </script>
 <div class="lodder_display_maddel">

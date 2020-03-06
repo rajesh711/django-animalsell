@@ -31,25 +31,26 @@
                     <div class="col-md-12 mb-2 md-form">
                         <label style="color: #FF9933;">Your Name</label>
                         {{ form.name }}
-                        <span id="s_owner_name"></span>
+                        <span id="error_user_user_name" style="float: left;"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-2 md-form">
                         <label  style="color: #FF9933;">Mobile No.</label>
                         {{ form.user_contact }}
-                        <span id="s_owner_number_sell"></span>
+                        <span id="error_user_contact" style="float: left;"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-2 md-form">
                         <label style="color: #FF9933;">Information</label>
                         {{ form.comment }}
-                        <p style="float: right; color: #FF9933;"><span id="rchars">00</span>/200</p><span id="s_owner_comment"></span>
+                        <p style="float: right; color: #FF9933;"><span id="rchars">00</span>/200</p>
+                        <span id="error_comment" style="float: left;"></span>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="button" name="submit"  class="next action-button comment-data" value="save" style="float: right;" />
+                    <input type="button" name=""  class=" action-button comment-data" value="save" style="float: right;" />
                 </div>
             </form>
         </div>

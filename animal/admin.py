@@ -14,7 +14,6 @@ class animal_post(admin.ModelAdmin):
     list_filter = ('add_time', 'user_name')
     search_fields = ['user_dist', 'animal_group']
     list_per_page = 10
-    readonly_fields = ['image_tag']
 
 
 admin.site.register(Post, animal_post)

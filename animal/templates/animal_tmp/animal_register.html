@@ -103,6 +103,7 @@
                 <div class="col-md-12 mb-3 md-form">
                     <label for="animal_discription" class="register_animal">Animal Description</label>
                    {{ form.animal_info }}
+                    <span id="error_animal_info"></span>
                 </div>
             </div>
             <div class="row">
@@ -158,6 +159,7 @@
                     <label style="color: #19161b;" for="validationDefault22" class="register_animal">Right</label>
                    {{ form.right_image }}
                 </div>
+                <span id="error_animal_image" style="float: left;"></span>
             </div>
             <input type="button" name="next"  class="next action-button" value="Next" style="float: right;" />
         </fieldset>
@@ -167,16 +169,19 @@
 				    <div class="col-md-6 mb-3 md-form">
 				      <label for="validationDefault22" class="register_animal">Name</label>
 				         {{ form.user_name }}
+                         <span id="error_user_name" style="float: left;"></span>
 				    </div>
 				    <div class="col-md-6 mb-3 md-form">
 				      <label for="validationDefault22" class="register_animal">Mobile No.</label>
 				      {{ form.user_contact }}
+                         <span id="error_user_contact" style="float: left;"></span>
 				    </div>
 				  </div>
                 <div class="row">
 				    <div class="col-md-12 mb-3 md-form">
                         <label for="validationDefault22" class="register_animal">Address</label>
                        {{ form.user_address }}
+                         <span id="error_user_address" style="float: left;"></span>
 				    </div>
                 </div>
                 <div class="row">

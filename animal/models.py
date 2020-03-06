@@ -74,7 +74,7 @@ class Post(models.Model):
             img4.save(self.right_image.path)
 
     def image_tag(self):
-        return mark_safe('<img src="%s" width="150" height="150" />' % self.front_image.url)
+        return mark_safe('<img src="%s" width="150" height="150" />' % str(self.front_image.url))
 
 
 class Group(models.Model):
