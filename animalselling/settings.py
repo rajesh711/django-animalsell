@@ -28,7 +28,7 @@ SECRET_KEY = '6zluhu(pih2fk1a)x0od*2#5v^jne7*u+ce+wwro_p(z949h0#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['animal-selling.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -83,20 +83,23 @@ WSGI_APPLICATION = 'animalselling.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'animalselling',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': 'SET default_storage_engine=INNODB',
-        }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'animalselling',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': 'SET default_storage_engine=INNODB',
+#         }
+#
+#     }
+# }
+import dj_database_url
 
-    }
-}
+DATABASES = {'default': dj_database_url.config(default=os.environ.get('DATABASE'))}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

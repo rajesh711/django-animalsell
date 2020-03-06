@@ -38,11 +38,11 @@ def home(request):
 class PostListView(ListView):
     model = Post
     queryset = Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) FROM 
-        animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
-        (SELECT count(*) FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
-        totalunlikes , (SELECT count(*) FROM animalselling.animal_comments WHERE animal_id = an_post.id AND 
-        `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
-        animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where approved_status=1 and 
+        animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
+        (SELECT count(*) FROM animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
+        totalunlikes , (SELECT count(*) FROM animal_comments WHERE animal_id = an_post.id AND 
+        `comment_status`=1 and dlt_status=0) as totalcomment FROM animal_post as an_post join 
+        animal_type as an_type on an_post.animal_breed = an_type.id where approved_status=1 and 
         an_post.delete_status=0''')
     template_name = 'animal_tmp/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'animals'
