@@ -109,7 +109,7 @@ class CommentCreateView(forms.ModelForm):
                                  message="Phone number must be entered in the format: '999999999'. Up to 15 digits "
                                          "allowed.")
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'user-name'})
-                           , label='Name', required=False)
+                           , label='Name', required=True)
     user_contact = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'user-contact'}),
                                    max_length=15, label='Enter Mobile No', required=False)
     comment = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'user-comment', "rows": 2,
