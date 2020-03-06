@@ -153,3 +153,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'animal-list'
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/'
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
