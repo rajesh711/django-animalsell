@@ -48,30 +48,30 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        img1 = Image.open(self.front_image.path)
-        img2 = Image.open(self.back_image.path)
-        img3 = Image.open(self.left_image.path)
-        img4 = Image.open(self.right_image.path)
-
-        if img1.height > 300 or img1.width > 300:
-            output_size = (300, 300)
-            img1.thumbnail(output_size)
-            img1.save(self.front_image.path)
-        if img2.height > 300 or img2.width > 300:
-            output_size = (300, 300)
-            img2.thumbnail(output_size)
-            img2.save(self.back_image.path)
-        if img3.height > 300 or img3.width > 300:
-            output_size = (300, 300)
-            img3.thumbnail(output_size)
-            img3.save(self.left_image.path)
-        if img4.height > 300 or img4.width > 300:
-            output_size = (300, 300)
-            img4.thumbnail(output_size)
-            img4.save(self.right_image.path)
+    # def save(self, *args, **kwargs):
+    #     super().save(*args, **kwargs)
+    #
+    #     img1 = Image.open(self.front_image.path)
+    #     img2 = Image.open(self.back_image.path)
+    #     img3 = Image.open(self.left_image.path)
+    #     img4 = Image.open(self.right_image.path)
+    #
+    #     if img1.height > 300 or img1.width > 300:
+    #         output_size = (300, 300)
+    #         img1.thumbnail(output_size)
+    #         img1.save(self.front_image.path)
+    #     if img2.height > 300 or img2.width > 300:
+    #         output_size = (300, 300)
+    #         img2.thumbnail(output_size)
+    #         img2.save(self.back_image.path)
+    #     if img3.height > 300 or img3.width > 300:
+    #         output_size = (300, 300)
+    #         img3.thumbnail(output_size)
+    #         img3.save(self.left_image.path)
+    #     if img4.height > 300 or img4.width > 300:
+    #         output_size = (300, 300)
+    #         img4.thumbnail(output_size)
+    #         img4.save(self.right_image.path)
 
     def image_tag(self):
         return mark_safe('<img src="%s" width="150" height="150" />' % str(self.front_image.url))
