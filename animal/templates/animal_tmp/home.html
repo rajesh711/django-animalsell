@@ -154,14 +154,23 @@ $(document).on('click','.like_unlike_animal', function(){
         csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function(response){
-         if (like_unlike ==0){
-            alert(response)
-            }
-         else {
-            alert(response)
-            }
-        location.reload(true);
-        },
+        $(".lodder_display_maddel").hide();
+
+
+       current.parents('.like_unlike_parents').find('.display_like').html(response.like_count);
+       current.parents('.like_unlike_parents').find('.display_unlike').html(response.unlike_count);
+
+     if(response.like_data==0){
+   current.parents('.like_unlike_parents').find('.like-jon').find('i').addClass('fa-thumbs-up').addClass('active_like');
+       current.parents('.like_unlike_parents').find('.unlike-jon').find('i').removeClass('active_like');
+
+       } else{
+            current.parents('.like_unlike_parents').find('.unlike-jon').find('i').addClass('fa-thumbs-down').addClass('active_like');
+
+            current.parents('.like_unlike_parents').find('.like-jon').find('i').removeClass('active_like');
+
+         }
+       },
         error: function () {
             alert("error");
             location.reload(true);

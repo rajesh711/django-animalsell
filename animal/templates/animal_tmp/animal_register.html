@@ -244,7 +244,7 @@ function  change_animal_type(groupId,url){
         },
         success: function(response){
          $("#animal_grouptype option").remove();
-        $.each(response.data, function( key, value ) {
+       $.each(response.data, function( key, value ) {
              $("#animal_grouptype").append(`<option value="`+value.id+`">`+value.en_type+`</option>`);
         });
 

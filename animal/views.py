@@ -34,17 +34,6 @@ def home(request):
     animals = paginator.get_page(page_number)
     like_unlike = LikeUnlike.objects.all()
 
-    context = {
-        'animals': Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) FROM 
-        animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
-        (SELECT count(*) FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
-        totalunlikes , (SELECT count(*) FROM animalselling.animal_comments WHERE animal_id = an_post.id AND 
-        `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
-        animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 and 
-        an_post.delete_status=0 order by add_time desc'''),
-        'like_unlike': LikeUnlike.objects.all()
-    }
-
     return render(request, 'animal_tmp/home.html', {'page_obj': animals, 'like_unlike': like_unlike})
 
 
@@ -76,17 +65,22 @@ def like_unlike(request):
     if request.method == 'POST':
         animalId = request.POST.get('animalId')
         like_data = request.POST.get('like_unlike')
-        count = LikeUnlike.objects.filter(like_unlike=0).count()
         if request.user is not None and request.user.is_active:
             select_like = LikeUnlike.objects.filter(animal_id=animalId, author_id=request.user)
             if select_like:
                 update_like = LikeUnlike.objects.filter(animal_id=animalId, author_id=request.user.id) \
                     .update(like_unlike=like_data)
-                return HttpResponse('Successful like-unlike')
+                like_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=0).count()
+                unlike_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=1).count()
+                response = {"success": True, 'like_count': like_count, 'unlike_count': unlike_count, 'like_data': like_data}
+                return JsonResponse(response)
             else:
                 insert = LikeUnlike.objects.create(animal_id=animalId, like_unlike=like_data, author_id=request.user.id)
                 insert.save()
-                return HttpResponse('Successful like-unlike')
+                like_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=0).count()
+                unlike_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=1).count()
+                response = {"success": True, 'like_count': like_count, 'unlike_count': unlike_count, 'like_data': like_data}
+                return JsonResponse(response)
         else:
             return HttpResponse('Please login')
     else:
