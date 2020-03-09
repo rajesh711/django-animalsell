@@ -21,18 +21,19 @@ from animal.models import Type, Post, LikeUnlike, Comments
 
 
 def home(request):
-    context = {
-        'animals': Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) FROM 
+    animal_list = Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) FROM 
         animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
         (SELECT count(*) FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
         totalunlikes , (SELECT count(*) FROM animalselling.animal_comments WHERE animal_id = an_post.id AND 
         `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
-        animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where approved_status=1 and 
-        an_post.delete_status=0 order by add_time desc'''),
-        'like_unlike': LikeUnlike.objects.all()
-    }
+        animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 and 
+        an_post.delete_status=0 order by add_time desc''')
+    paginator = Paginator(animal_list, 5)  # Show 25 contacts per page.
 
-    return render(request, 'animal_tmp/home.html', context)
+    page_number = request.GET.get('page')
+    animals = paginator.get_page(page_number)
+    like_unlike = LikeUnlike.objects.all()
+    return render(request, 'animal_tmp/home.html', {'page_obj': animals, 'like_unlike': like_unlike})
 
 
 class PostListView(ListView):
@@ -42,8 +43,8 @@ class PostListView(ListView):
         (SELECT count(*) FROM animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
         totalunlikes , (SELECT count(*) FROM animal_comments WHERE animal_id = an_post.id AND 
         `comment_status`=1 and dlt_status=0) as totalcomment FROM animal_post as an_post join 
-        animal_type as an_type on an_post.animal_breed = an_type.id where approved_status=1 and 
-        an_post.delete_status=0''')
+        animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 and 
+        an_post.delete_status=0 order by add_time desc''')
     template_name = 'animal_tmp/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'animals'
     paginate_by = 8
@@ -254,4 +255,3 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView, ABC):
         if self.request.user == post.author:
             return True
         return False
-

@@ -7,7 +7,7 @@
      <div class="row display_animal">
          <div class="col-lg-12 display_pagination">
              <div class="row">
-                 {% for animal in animals %}
+                 {% for animal in page_obj %}
                  <div class="col-lg-3 col-md-6 mb-4 post">
                      <div class="card blog-box-content h-55">
                            <a href="{% url 'post-detail' animal.id %}">
@@ -261,7 +261,7 @@ $(document).on('click','.animal_comment', function(){
     <i class="fa fa-spinner fa-pulse fa-3x fa-fw animal-loader"></i>
 
   </div>
-    {% if is_paginated %}
+
 
       {% if page_obj.has_previous %}
         <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
@@ -281,5 +281,4 @@ $(document).on('click','.animal_comment', function(){
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
       {% endif %}
 
-    {% endif %}
 {% endblock content %}
