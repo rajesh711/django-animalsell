@@ -1,62 +1,63 @@
 {% extends "animal_tmp/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+ {% load i18n %}
     <div class="col-md-12">
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Profile Info</legend>
+              <legend class="border-bottom mb-4">{% trans "Profile Info" %}</legend>
               <div class="row">
                 <div class="col-md-6">
-                  <label>First Name</label>
+                  <label>{% trans "First Name" %}</label>
                   <div class="form-group">
                   {{ u_form.first_name }}
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <label>Last Name</label>
+                  <label>{% trans "Last Name" %}</label>
                  <div class="form-group">
                   {{ u_form.last_name }}
                   </div>
                 </div>
                   <div class="col-md-6">
-                    <label>Enter Mobile No</label>
+                    <label>{% trans "Enter Mobile No" %}</label>
                     <div class="form-group">
                         {{ p_form.user_contact }}
                     </div>
                     </div>
                   <div class="col-md-6">
-                    <label>Village</label>
+                    <label>{% trans "Village" %}</label>
                     <div class="form-group">
                         {{ p_form.user_village }}
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label>Address</label>
+                    <label>{% trans "Address" %}</label>
                     <div class="form-group">
                         {{ p_form.user_address }}
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label>Tehsil (Block)</label>
+                    <label>{% trans "Tehsil (Block)" %}</label>
                     <div class="form-group">
                         {{ p_form.user_teh }}
                     </div>
                 </div>
                   <div class="col-md-6">
-                    <label>District</label>
+                    <label>{% trans "District" %}</label>
                     <div class="form-group">
                         {{ p_form.user_dist }}
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label>Select Country</label>
+                    <label>{% trans "Select Country" %}</label>
                     <div class="form-group">
                         {{ p_form.user_state_id }}
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label>Select State</label>
+                    <label>{% trans "Select State" %}</label>
                     <div class="form-group">
                         {{ p_form.user_country_id }}
                     </div>
@@ -66,7 +67,7 @@
               </div>
           </fieldset>
           <div class="form-group">
-              <button class="btn btn-outline-info" style="float:right;" type="submit">Update</button>
+              <button class="btn btn-outline-info" style="float:right;" type="submit">{% trans "Update" %}</button>
           </div>
       </form>
     </div>

@@ -1,16 +1,17 @@
 
 {% extends "animal_tmp/base.html" %}
 {% block content %}
+ {% load i18n %}
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Delete Animal</legend>
-                <h4>Are you sure you want to delete the Animal</h4>
+                <legend class="border-bottom mb-4">{% trans "Delete Animal" %}</legend>
+                <h3>{% trans "Are you sure you want to delete the Animal" %}</h3>
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button>
-                <a class="btn btn-outline-secondary" href="{% url 'user-posts' %}">Cancel</a>
+                <button class="btn btn-outline-danger" type="submit">{% trans "Yes, Delete" %}</button>
+                <a class="btn btn-outline-secondary" href="{% url 'user-posts' %}">{% trans "Cancel" %}</a>
             </div>
         </form>
     </div>

@@ -1,4 +1,5 @@
 {% load static %}
+  {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,13 +37,16 @@
             <div class="top-header-content d-flex align-items-center justify-content-between">
               <div class="top-header-meta text-right">
                 <a href="#" data-toggle="tooltip" data-placement="bottom" title="info@5exceptions.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>Email:  info@5exceptions.com</span></a>
-                <a href="#" data-toggle="tooltip" data-placement="bottom" title="+91 7697307036"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 7697307036</span></a>
-        <select id="language_dropdown" class="language_dropdown">
-          <option style="" value="">select lang</option>
-          <option style="" value="1"  selected="selected" data-imagesrc="{% static 'img/core-img/india-flag-1.png' %}"> <b>&nbsp;&nbsp;हिंदी</b></option>
-          <option style="" value="2"  data-imagesrc="{% static 'img/core-img/india-flag-1.png' %}"><b>&nbsp;&nbsp;मराठ</b></option>
-          <option style="" value="3"  data-imagesrc="{% static 'img/core-img/us_flag.png' %}"><b>&nbsp;&nbsp;English</b></option>
+                  <a href="#" data-toggle="tooltip" data-placement="bottom" title="+91 7697307036"><i class="fa fa-phone" aria-hidden="true"></i> <span>Call Us: +91 7697307036</span></a>
+         <form action="{% url 'set_language'%}" method="post" id="lang_form" style="display: inline-block; vertical-align: middle;">
+              {% csrf_token %}
+          <select id="language_dropdown" class="language_dropdown form-control" name="animal_language">
+              {% get_current_language as LANGUAGE_CODE %}
+          <option value="">Select Language</option>
+          <option style="" value="hi" {% if 'hi' == LANGUAGE_CODE %} selected{% endif %} ><b>&nbsp; हिंदी</b></option>
+          <option style="" value="en-us" {% if 'en-us' == LANGUAGE_CODE %} selected{% endif %}><b>&nbsp;&nbsp;English</b></option>
         </select>
+          </form>
               </div>
             </div>
           </div>
@@ -71,15 +75,15 @@
               <!-- Navbar Start -->
               <div class="classynav">
                 <ul>
-                  <li class="active"><a href="{% url 'animal-list' %}">SEARCH ANIMAL</a></li>
+                  <li class="active"><a href="{% url 'animal-list' %}">{% trans "SEARCH ANIMAL" %}</a></li>
                   {% if user.is_authenticated %}
-                    <li><a href="{% url 'sell-animal' %}">SELL ANIMAL</a></li>
-                    <li><a href="{% url 'user-posts' %}">MY ANIMAL</a></li>
-                    <li><a href="{% url 'profile' %}">Profile</a></li>
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'sell-animal' %}">{% trans "SELL ANIMAL" %}</a></li>
+                    <li><a href="{% url 'user-posts' %}">{% trans "MY ANIMAL" %}</a></li>
+                    <li><a href="{% url 'profile' %}">{% trans "Profile" %}</a></li>
+                    <li><a href="{% url 'logout' %}">{% trans "Logout" %}</a></li>
                     {% else %}
-                  <li><a  href="{% url 'login' %}">Login</a></li>
-                  <li><a  href="{% url 'register' %}">Register</a></li>
+                  <li><a  href="{% url 'login' %}">{% trans "Login" %}</a></li>
+                  <li><a  href="{% url 'register' %}">{% trans "Register" %}</a></li>
               {% endif %}
                 </ul>
               </div>

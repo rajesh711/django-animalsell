@@ -77,7 +77,7 @@ class PostCreateView(forms.ModelForm):
                                                                 'id': 'animal_group'}),
                                      choices=[(group.id, str(group.en_name)) for group in load_group()],
                                      required=False, initial='1')
-    CHOICES_bread = [('', 'Select Bread')]
+
     animal_breed = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control animal_grouptype',
                                                                 'id': 'animal_grouptype'}),
                                      choices=[(type.id, str(type.en_type)) for type in load_all_type()],

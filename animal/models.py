@@ -53,50 +53,29 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
     def save(self):
-        # Opening the uploaded image
-        img1 = Image.open(self.front_image)
-        img2 = Image.open(self.back_image)
-        img3 = Image.open(self.left_image)
-        img4 = Image.open(self.right_image)
-        output1 = BytesIO()
-        # Resize/modify the image
-        im1 = img1.resize((300, 300))
-        # after modifications, save it to the output
-        im1.save(output1, format='JPEG', quality=90)
-        output1.seek(0)
-        # change the imagefield value to be the newley modifed image value
-        self.front_image = InMemoryUploadedFile(output1, 'ImageField', "%s.jpg" % self.front_image.name.split('.')[0],
-                                                'media/animal_pics',
-                                                sys.getsizeof(output1), None)
-        output2 = BytesIO()
-        im2 = img2.resize((300, 300))
-        # after modifications, save it to the output
-        im2.save(output2, format='JPEG', quality=90)
-        output2.seek(0)
-        # change the imagefield value to be the newley modifed image value
-        self.back_image = InMemoryUploadedFile(output2, 'ImageField', "%s.jpg" % self.back_image.name.split('.')[0],
-                                               'media/animal_pics',
-                                                sys.getsizeof(output2), None)
-        output3 = BytesIO()
-        im3 = img3.resize((300, 300))
-        # after modifications, save it to the output
-        im3.save(output3, format='JPEG', quality=90)
-        output3.seek(0)
-        # change the imagefield value to be the newley modifed image value
-        self.left_image = InMemoryUploadedFile(output3, 'ImageField', "%s.jpg" % self.left_image.name.split('.')[0],
-                                               'media/animal_pics',
-                                               sys.getsizeof(output3), None)
-        output4 = BytesIO()
-        im4 = img4.resize((300, 300))
-        # after modifications, save it to the output
-        im4.save(output4, format='JPEG', quality=90)
-        output4.seek(0)
-
-        # change the imagefield value to be the newley modifed image value
-        self.right_image = InMemoryUploadedFile(output4, 'ImageField', "%s.jpg" % self.right_image.name.split('.')[0],
-                                                'media/animal_pics',
-                                                sys.getsizeof(output4), None)
         super().save()
+
+        img1 = Image.open(self.front_image.path)
+        img2 = Image.open(self.back_image.path)
+        img3 = Image.open(self.left_image.path)
+        img4 = Image.open(self.right_image.path)
+
+        if img1.height > 300 or img1.width > 300:
+            output_size = (300, 300)
+            img1.thumbnail(output_size)
+            img1.save(self.front_image.path)
+        if img2.height > 300 or img2.width > 300:
+            output_size = (300, 300)
+            img2.thumbnail(output_size)
+            img2.save(self.back_image.path)
+        if img3.height > 300 or img3.width > 300:
+            output_size = (300, 300)
+            img3.thumbnail(output_size)
+            img3.save(self.left_image.path)
+        if img4.height > 300 or img4.width > 300:
+            output_size = (300, 300)
+            img4.thumbnail(output_size)
+            img4.save(self.right_image.path)
 
     def image_tag(self):
         return mark_safe('<img src="%s" width="150" height="150" />' % str(self.front_image.url))

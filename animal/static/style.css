@@ -2427,15 +2427,18 @@ cursor: pointer;
   }
 
 
-#language_dropdown .dd-select{ 
+#language_dropdown .dd-select{
     background: #ffffff !important;
         width: 120px !important;
 
   }
   #language_dropdown{
-    max-height:300px !important;
+    height:28px !important;
+    font-size:13px !important;
     width: 120px !important;
     float: right;
+    margin-bottom:0px !important;
+    padding:5px !important;
   }
   #language_dropdown .dd-select .dd-selected img,
   #language_dropdown .dd-options .dd-option-image{
@@ -2446,7 +2449,7 @@ cursor: pointer;
   #language_dropdown .dd-options .dd-option-text{
     line-height: 22px !important;
     margin-bottom: 0px;
-    
+
 
   }
   #language_dropdown .dd-option,

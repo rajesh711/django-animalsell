@@ -1,7 +1,12 @@
-$('#language_dropdown').ddslick({
-    onSelected: function(selectedData){
-        //callback function: do something with selectedData;
-    }
+//$('#language_dropdown').ddslick({
+//    onSelected: function(selectedData){
+//        //callback function: do something with selectedData;
+//        var id = selectedData.selectedData.value;
+//            change_language_dropdown(id);
+//    }
+//});
+$(document).on('change','.language_dropdown', function(){
+ $('form#lang_form').submit();
 });
 
 var current_fs, next_fs, previous_fs; //fieldsets

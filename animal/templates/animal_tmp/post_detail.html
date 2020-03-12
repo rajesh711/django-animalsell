@@ -20,79 +20,85 @@
                     </ul>
                 </div>
             </div>
+             {% load i18n %}
             <div class="details col-md-8">
-                <p class="product-title" style="color: #FF9933; font-size: 20px;">ANIMAL DESCRIPTION</p>
+                <p class="product-title" style="color: #FF9933; font-size: 20px;">{% trans "ANIMAL DESCRIPTION" %}</p>
                 <div class="row">
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Animal Breed</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Animal Breed" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="font-size: 15px;"><b>{{ object.en_type }}</b></p>
+                        {% get_current_language as LANGUAGE_CODE %}
+                                           {% if LANGUAGE_CODE == 'hi' %}
+                                         <p style="font-size: 15px;"><b>{{ object.in_type }}</b></p>
+                                         {% else %}
+                                         <p style="font-size: 15px;"><b>{{ object.en_type }}</b></p>
+                                         {% endif %}
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Price</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Price" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
                         <p style="font-size: 15px;">Rs.{{ object.animal_price }} /-</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Animal Age</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Animal Age" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="font-size: 15px;" >{{ object.animal_age }} Year</p>
+                        <p style="font-size: 15px;" >{{ object.animal_age }} {% trans "Year" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Milk</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Milk" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="font-size: 15px;" >{{ object.animal_milk }} Liter</p>
+                        <p style="font-size: 15px;" >{{ object.animal_milk }} {% trans "Liter" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Color</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Color" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
 
                         <p style="font-size: 15px;" >
-                            {% if object.animal_color == '1' %}Black White
-                            {% elif object.animal_color == '2' %}White
-                            {% elif object.animal_color == '3'  %}Black
-                            {% elif object.animal_color == '4'  %}Light Black
-                            {% elif object.animal_color == '5'  %}Brown White
-                            {% else  %}Brown
+                            {% if object.animal_color == '1' %}{% trans "Black White" %}
+                            {% elif object.animal_color == '2' %}{% trans "White" %}
+                            {% elif object.animal_color == '3'  %}{% trans "Black" %}
+                            {% elif object.animal_color == '4'  %}{% trans "Light Black" %}
+                            {% elif object.animal_color == '5'  %}{% trans "Brown White" %}
+                            {% else  %}{% trans "Brown" %}
                             {% endif %}
 
                         </p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Animal Weight (KG)</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Animal Weight (KG)" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="font-size: 15px;" >{{ object.animal_weight }} approx </p>
+                        <p style="font-size: 15px;" >{{ object.animal_weight }} {% trans "approx" %} </p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Total Child</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Total Child" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
                         <p style="font-size: 15px;" >{{ object.animal_child }}</p>
                     </div>
                     <div class="col-md-6 col-6">
-                        <p style="color: #FF9933;font-size: 15px;">Information</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Information" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
                         <p style="font-size: 15px;" >{{ object.animal_info }} </p>
                     </div>
                     <div class="col-md-12" style="margin-top:30px">
-                        <p class="product-title" style="color: #FF9933; font-size: 20px;">Seller Details</p>
+                        <p class="product-title" style="color: #FF9933; font-size: 20px;">{% trans "Seller Details" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
                         <p style="color: #FF9933;font-size: 15px;font-style:bold;">
-                            Seller Name</p>
+                            {% trans "Seller Name" %}</p>
                     </div>
                     <div class="col-md-6 col-6">
                         <p style="font-size: 15px; "><b>{{ object.user_name }} </b></p>
                     </div>
                     <div class="col-md-4 col-4">
-                        <p style="color: #FF9933;font-size: 15px;">Contact</p>
+                        <p style="color: #FF9933;font-size: 15px;">{% trans "Contact" %}</p>
                     </div>
                     <div class="col-md-8 col-8">
                         <span style=" text-align: center;font-size:15px;background-color:#FF9933;color: white; width:auto;padding: 10px;
@@ -100,7 +106,7 @@
                             <i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{{ object.user_contact }} </span>
                     </div>
                     <div class="col-md-12 col-12">
-                        <p style="color: #FF9933;font-size: 15px; margin-left:px;">Address</p>
+                        <p style="color: #FF9933;font-size: 15px; margin-left:px;">{% trans "Address" %}</p>
                     </div>
                     <div class="col-md-12 col-12">
                         <p style="margin-top:0px;">{{ object.user_address }}</br>{{ object.user_village }}

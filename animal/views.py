@@ -11,6 +11,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.urls.base import reverse_lazy, reverse
+from django.utils import translation
 from django.utils.datetime_safe import datetime
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -18,6 +19,14 @@ from django.views.generic.list import ListView
 
 from animal.forms import PostCreateView, CommentCreateView
 from animal.models import Type, Post, LikeUnlike, Comments
+from django.utils.translation import gettext_lazy as _
+
+
+def language(request):
+    lang = request.POST.get('animal_language')
+    translation.activate(lang)
+    # return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('animal-list')
 
 
 def home(request):
@@ -28,7 +37,7 @@ def home(request):
         `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
         animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 and 
         an_post.delete_status=0 order by add_time desc''')
-    paginator = Paginator(animal_list, 10)  # Show 25 contacts per page.
+    paginator = Paginator(animal_list, 12)  # Show 25 contacts per page.
 
     page_number = request.GET.get('page')
     animals = paginator.get_page(page_number)
@@ -54,6 +63,8 @@ class PostListView(ListView):
 def load_type(request):
     group_id = request.POST.get('groupId')
     animal_type = Type.objects.filter(group_id=group_id)
+    # print("group_id", group_id)
+    # print('animal_type==', animal_type)
     result_set = []
     for type in animal_type:
         result_set.append({'id': type.id, 'en_type': type.en_type})
@@ -72,14 +83,16 @@ def like_unlike(request):
                     .update(like_unlike=like_data)
                 like_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=0).count()
                 unlike_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=1).count()
-                response = {"success": True, 'like_count': like_count, 'unlike_count': unlike_count, 'like_data': like_data}
+                response = {"success": True, 'like_count': like_count, 'unlike_count': unlike_count,
+                            'like_data': like_data}
                 return JsonResponse(response)
             else:
                 insert = LikeUnlike.objects.create(animal_id=animalId, like_unlike=like_data, author_id=request.user.id)
                 insert.save()
                 like_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=0).count()
                 unlike_count = LikeUnlike.objects.filter(animal_id=animalId, like_unlike=1).count()
-                response = {"success": True, 'like_count': like_count, 'unlike_count': unlike_count, 'like_data': like_data}
+                response = {"success": True, 'like_count': like_count, 'unlike_count': unlike_count,
+                            'like_data': like_data}
                 return JsonResponse(response)
         else:
             return HttpResponse('Please login')
@@ -106,7 +119,7 @@ def like_unlike(request):
 class PostCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('user-posts')
     form_class = PostCreateView
-    success_message = "f'Your animal description has been sent for admin approval"
+    success_message = _("f'Your animal description has been sent for admin approval")
     template_name = 'animal_tmp/animal_register.html'
 
     def form_valid(self, form):
@@ -149,10 +162,10 @@ def adminCommnetApproved(request, pk=None):
     for comment in comments:
         if comment == 0:
             status = 1
-            msg = f'Comment has been approval successful'
+            msg = _(f'Comment has been approval successful')
         else:
             status = 0
-            msg = f'Comment has been disapproval successful'
+            msg = _(f'Comment has been disapproval successful')
 
     approved_post = Comments.objects.filter(id=commentId).update(comment_status=status)
     messages.success(request, msg)
@@ -168,10 +181,10 @@ def adminPostAproved(request, pk=None):
     for animal in animals:
         if animal == 0:
             status = 1
-            msg = f'Animal has been approval successful'
+            msg = _(f'Animal has been approval successful')
         else:
             status = 0
-            msg = f'Animal has been disapproval successful'
+            msg = _(f'Animal has been disapproval successful')
 
     approved_post = Post.objects.filter(id=animalId).update(approved_status=status)
     messages.success(request, msg)
@@ -188,10 +201,10 @@ def adminPostDelete(request, pk=None):
     for animal in animals:
         if animal == 0:
             status = 1
-            msg = f'Animal has been delete successful'
+            msg = _(f'Animal has been delete successful')
         else:
             status = 0
-            msg = f'Animal has been Active successful'
+            msg = _(f'Animal has been Active successful')
 
     approved_post = Post.objects.filter(id=animalId).update(delete_status=status)
     messages.success(request, msg)
@@ -226,9 +239,9 @@ def save_comments(request):
         comment = Comments.objects.create(name=name, animal_id=animalId, comment=comment,
                                           user_contact=phone, author_id=request.user.id)
         comment.save()
-        return HttpResponse('Success')
+        return HttpResponse(_('Success: Your comment has been sent for approval'))
     else:
-        return HttpResponse('Please Login')
+        return HttpResponse(_('Please Login'))
 
 
 @login_required
@@ -261,4 +274,3 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView, ABC):
         if self.request.user == post.author:
             return True
         return False
-

@@ -1,3 +1,4 @@
+
 {% extends "animal_tmp/base.html" %}
 {% block content %}
 {% load static %}
@@ -8,6 +9,7 @@
          <div class="col-lg-12 display_pagination">
              <div class="row">
                  {% for animal in page_obj %}
+                 {% load i18n %}
                  <div class="col-lg-3 col-md-6 mb-4 post">
                      <div class="card blog-box-content h-55">
                            <a href="{% url 'post-detail' animal.id %}">
@@ -30,17 +32,22 @@
                              <div class="col-md-12">
                                  <div class="row">
                                      <div class="col-md-6 col-6 pr-0" style="">
+                                         {% get_current_language as LANGUAGE_CODE %}
+                                           {% if LANGUAGE_CODE == 'hi' %}
+                                         <p style="color: #FF9933;"><b>{{ animal.in_type }}</b></p>
+                                         {% else %}
                                          <p style="color: #FF9933;"><b>{{ animal.en_type }}</b></p>
+                                         {% endif %}
                                      </div>
                                      <div class="col-md-6 col-6" style="">
-                                         <p style="color: #FF9933;"><b>{{ animal.animal_price }} Rs</b></p>
+                                         <p style="color: #FF9933;"><b> {% trans "Rs." %} {{ animal.animal_price }}</b></p>
                                      </div>
                                  </div>
                              </div>
                              <div class="col-md-12">
                                  <div class="row">
                                      <div class="col-md-6 col-6">
-                                         <p>Animal Milk</p>
+                                         <p>{% trans 'Animal Milk' %}</p>
                                      </div>
                                      <div class="col-md-6 col-6">
                                          <p>{{ animal.animal_milk }} Lt.</p>
@@ -62,7 +69,7 @@
                              <div class="col-md-12">
                                  <div class="row">
                                      <div class="col-md-6">
-                                         <p class=""style="color: #FF9933;">Information</p>
+                                         <p class=""style="color: #FF9933;">{% trans "Information" %}</p>
                                      </div>
                                  </div>
                              </div>
@@ -111,7 +118,7 @@
                                      </div>
                                      <div class="like-jon" style="display: inline-block;">
                                          <span class="badge " style=" font-size: 10px; background-color: #FF9933;  font-style:italic;color:#ffffff;border-radius: 20px;  width:50px;padding-top:5px;padding-left:3px; margin-left: -5px; padding-right: 5px;" >
-                                             SOLD
+                                             {% trans "SOLD" %}
                                          </span>
                                      </div>
                                  </div>
@@ -134,7 +141,7 @@
     </div>
 <div class="text-center">
     <a href="javascript:void(0);"style="display: none;" class="btn btn-default btn-rounded mb-4 comment_form" data-toggle="modal"
-       data-target="#modalContactForm">comment form
+       data-target="#modalContactForm">c
     </a>
 </div>
 <script>
@@ -253,7 +260,7 @@ $(document).on('click','.animal_comment', function(){
         csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function(response){
-         alert(response + ': Your comment has been sent for approval')
+         alert(response)
          $('#modalContactForm').modal('hide');
           location.reload(true);
         },
@@ -273,8 +280,8 @@ $(document).on('click','.animal_comment', function(){
     {% if page_obj.paginator.num_pages > 1 %}
 
       {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        <a class="btn btn-outline-info mb-4" href="?page=1">{% trans "first" %}</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">{%trans "previous" %}</a>
       {% endif %}
 
       {% for num in page_obj.paginator.page_range %}
@@ -286,8 +293,8 @@ $(document).on('click','.animal_comment', function(){
       {% endfor %}
 
       {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">{% trans "next" %}</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">{% trans "last" %}</a>
       {% endif %}
 
     {% endif %}
