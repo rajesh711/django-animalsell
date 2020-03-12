@@ -1,0 +1,460 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-12 12:41+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:17
+msgid "Delete"
+msgstr "Delete"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:20
+msgid "Active"
+msgstr "Active"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:43
+#: animal/templates/animal_tmp/post_detail.html:25
+msgid "ANIMAL DESCRIPTION"
+msgstr "ANIMAL DESCRIPTION"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:46
+#: animal/templates/animal_tmp/post_detail.html:28
+msgid "Animal Breed"
+msgstr "Animal Breed"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:52
+#: animal/templates/animal_tmp/animal_register.html:51
+#: animal/templates/animal_tmp/post_detail.html:34
+msgid "Price"
+msgstr "Price"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:58
+#: animal/templates/animal_tmp/animal_register.html:42
+#: animal/templates/animal_tmp/post_detail.html:40
+msgid "Animal Age"
+msgstr "Animal Age"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:64
+#: animal/templates/animal_tmp/post_detail.html:46
+msgid "Milk"
+msgstr "Milk"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:70
+#: animal/templates/animal_tmp/animal_register.html:57
+#: animal/templates/animal_tmp/post_detail.html:52
+msgid "Color"
+msgstr "Color"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:75
+#: animal/templates/animal_tmp/animal_register.html:64
+#: animal/templates/animal_tmp/post_detail.html:57
+msgid "Black White"
+msgstr "Black White"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:76
+#: animal/templates/animal_tmp/animal_register.html:70
+#: animal/templates/animal_tmp/post_detail.html:58
+msgid "White"
+msgstr "White"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:77
+#: animal/templates/animal_tmp/animal_register.html:76
+#: animal/templates/animal_tmp/post_detail.html:59
+msgid "Black"
+msgstr "Black"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:78
+#: animal/templates/animal_tmp/animal_register.html:84
+#: animal/templates/animal_tmp/post_detail.html:60
+msgid "Light Black"
+msgstr "Light Black"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:80
+#: animal/templates/animal_tmp/animal_register.html:97
+#: animal/templates/animal_tmp/post_detail.html:62
+msgid "Brown"
+msgstr "Brown"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:85
+#: animal/templates/animal_tmp/animal_register.html:47
+#: animal/templates/animal_tmp/post_detail.html:68
+msgid "Animal Weight (KG)"
+msgstr "Animal Weight (KG)"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:88
+#: animal/templates/animal_tmp/post_detail.html:71
+msgid "approx"
+msgstr "approx"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:91
+#: animal/templates/animal_tmp/post_detail.html:74
+msgid "Total Child"
+msgstr "Total Child"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:97
+#: animal/templates/animal_tmp/comments.html:46
+#: animal/templates/animal_tmp/home.html:67
+#: animal/templates/animal_tmp/post_detail.html:80
+#: animal/templates/animal_tmp/user_posts.html:86
+msgid "Information"
+msgstr "Information"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:103
+#: animal/templates/animal_tmp/post_detail.html:86
+msgid "Seller Details"
+msgstr "Seller Details"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:107
+#: animal/templates/animal_tmp/post_detail.html:90
+msgid "Seller Name"
+msgstr "Seller Name"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:113
+#: animal/templates/animal_tmp/post_detail.html:96
+msgid "Contact"
+msgstr "Contact"
+
+#: animal/templates/animal_tmp/admin_animal_details.html:121
+#: animal/templates/animal_tmp/animal_register.html:183
+#: animal/templates/animal_tmp/post_detail.html:104
+#: users/templates/users/profile.html:36
+msgid "Address"
+msgstr "Address"
+
+#: animal/templates/animal_tmp/animal_register.html:11
+#: animal/templates/animal_tmp/animal_register.html:15
+msgid "Animal Details"
+msgstr "Animal Details"
+
+#: animal/templates/animal_tmp/animal_register.html:20
+msgid "Select Animal Group"
+msgstr "Select Animal Group"
+
+#: animal/templates/animal_tmp/animal_register.html:27
+msgid "Select Animal Breed"
+msgstr "Select Animal Breed"
+
+#: animal/templates/animal_tmp/animal_register.html:33
+msgid "Select Animal Milk"
+msgstr "Select Animal Milk"
+
+#: animal/templates/animal_tmp/animal_register.html:38
+msgid "total Child"
+msgstr "Total Child"
+
+#: animal/templates/animal_tmp/animal_register.html:90
+#: animal/templates/animal_tmp/post_detail.html:61
+msgid "Brown White"
+msgstr "Brown White"
+
+#: animal/templates/animal_tmp/animal_register.html:105
+msgid "Animal Description"
+msgstr "Animal Description"
+
+#: animal/templates/animal_tmp/animal_register.html:112
+msgid "Animal Photo"
+msgstr "Animal Photo"
+
+#: animal/templates/animal_tmp/animal_register.html:121
+#: animal/templates/animal_tmp/animal_register.html:133
+#: animal/templates/animal_tmp/animal_register.html:145
+#: animal/templates/animal_tmp/animal_register.html:157
+msgid "Add photo"
+msgstr "Add photo"
+
+#: animal/templates/animal_tmp/animal_register.html:124
+msgid "Front"
+msgstr "Front"
+
+#: animal/templates/animal_tmp/animal_register.html:136
+msgid "Back"
+msgstr "Back"
+
+#: animal/templates/animal_tmp/animal_register.html:148
+msgid "Left"
+msgstr "Left"
+
+#: animal/templates/animal_tmp/animal_register.html:160
+msgid "Right"
+msgstr "Right"
+
+#: animal/templates/animal_tmp/animal_register.html:165
+msgid "Next"
+msgstr "Next"
+
+#: animal/templates/animal_tmp/animal_register.html:168
+msgid "User Details"
+msgstr "User Details"
+
+#: animal/templates/animal_tmp/animal_register.html:171
+msgid "Name"
+msgstr "Name"
+
+#: animal/templates/animal_tmp/animal_register.html:176
+#: animal/templates/animal_tmp/comments.html:39
+msgid "Mobile No."
+msgstr "Mobile No."
+
+#: animal/templates/animal_tmp/animal_register.html:190
+#: users/templates/users/profile.html:30
+msgid "Village"
+msgstr "Village"
+
+#: animal/templates/animal_tmp/animal_register.html:194
+#: users/templates/users/profile.html:42
+msgid "Tehsil (Block)"
+msgstr "Tehsil (Block)"
+
+#: animal/templates/animal_tmp/animal_register.html:200
+msgid "District / City"
+msgstr "District / City"
+
+#: animal/templates/animal_tmp/animal_register.html:205
+msgid "State"
+msgstr "State"
+
+#: animal/templates/animal_tmp/animal_register.html:213
+msgid "Country"
+msgstr "Country"
+
+#: animal/templates/animal_tmp/animal_register.html:220
+msgid "Save"
+msgstr "Save"
+
+#: animal/templates/animal_tmp/animal_register.html:221
+msgid "Previous"
+msgstr "Previous"
+
+#: animal/templates/animal_tmp/base.html:77
+msgid "SEARCH ANIMAL"
+msgstr "SEARCH ANIMAL"
+
+#: animal/templates/animal_tmp/base.html:79
+msgid "SELL ANIMAL"
+msgstr "SELL ANIMAL"
+
+#: animal/templates/animal_tmp/base.html:80
+msgid "MY ANIMAL"
+msgstr "MY ANIMAL"
+
+#: animal/templates/animal_tmp/base.html:81
+msgid "Profile"
+msgstr "Profile"
+
+#: animal/templates/animal_tmp/base.html:82
+msgid "Logout"
+msgstr "Logout"
+
+#: animal/templates/animal_tmp/base.html:84 users/templates/users/login.html:13
+msgid "Login"
+msgstr "Login"
+
+#: animal/templates/animal_tmp/base.html:85
+msgid "Register"
+msgstr "Register"
+
+#: animal/templates/animal_tmp/comments.html:5
+msgid "Watch the Conversation!"
+msgstr "Watch the Conversation!"
+
+#: animal/templates/animal_tmp/comments.html:27
+msgid "Write a Comment!"
+msgstr "Write a Comment!"
+
+#: animal/templates/animal_tmp/comments.html:32
+msgid "Your Name"
+msgstr "Your Name"
+
+#: animal/templates/animal_tmp/comments.html:52
+msgid "save"
+msgstr "Save"
+
+#: animal/templates/animal_tmp/home.html:38
+#: animal/templates/animal_tmp/user_posts.html:38
+msgid "Rs."
+msgstr "Rs."
+
+#: animal/templates/animal_tmp/home.html:45
+#: animal/templates/animal_tmp/user_posts.html:45
+msgid "Animal Milk"
+msgstr "Animal Milk"
+
+#: animal/templates/animal_tmp/home.html:116
+#: animal/templates/animal_tmp/user_posts.html:133
+msgid "SOLD"
+msgstr "SOLD"
+
+#: animal/templates/animal_tmp/home.html:278
+msgid "first"
+msgstr "First"
+
+#: animal/templates/animal_tmp/home.html:279
+msgid "previous"
+msgstr "Previous"
+
+#: animal/templates/animal_tmp/home.html:291
+msgid "next"
+msgstr "Next"
+
+#: animal/templates/animal_tmp/home.html:292
+msgid "last"
+msgstr "Last"
+
+#: animal/templates/animal_tmp/post_confirm_delete.html:9
+msgid "Delete Animal"
+msgstr "Delete Animal"
+
+#: animal/templates/animal_tmp/post_confirm_delete.html:10
+msgid "Are you sure you want to delete the Animal"
+msgstr "Are you sure you want to delete the Animal"
+
+#: animal/templates/animal_tmp/post_confirm_delete.html:13
+msgid "Yes, Delete"
+msgstr "Yes, Delete"
+
+#: animal/templates/animal_tmp/post_confirm_delete.html:14
+msgid "Cancel"
+msgstr "Cancel"
+
+#: animal/templates/animal_tmp/post_detail.html:43
+msgid "Year"
+msgstr "Year"
+
+#: animal/templates/animal_tmp/post_detail.html:49
+msgid "Liter"
+msgstr "Liter"
+
+#: animal/views.py:122
+msgid "f'Your animal description has been sent for admin approval"
+msgstr "f'Your animal description has been sent for admin approval"
+
+#: animal/views.py:165
+msgid "Comment has been approval successful"
+msgstr "Comment has been approval successful"
+
+#: animal/views.py:168
+msgid "Comment has been disapproval successful"
+msgstr "Comment has been disapproval successful"
+
+#: animal/views.py:184
+msgid "Animal has been approval successful"
+msgstr "Animal has been approval successful"
+
+#: animal/views.py:187
+msgid "Animal has been disapproval successful"
+msgstr "Animal has been disapproval successful"
+
+#: animal/views.py:204
+msgid "Animal has been delete successful"
+msgstr "Animal has been delete successful"
+
+#: animal/views.py:207
+msgid "Animal has been Active successful"
+msgstr "Animal has been Active successful"
+
+#: animal/views.py:242
+msgid "Success: Your comment has been sent for approval"
+msgstr "Success: Your comment has been sent for approval"
+
+#: animal/views.py:244
+msgid "Please Login"
+msgstr "Please Login"
+
+#: users/templates/users/login.html:9
+msgid "Log In"
+msgstr "Log In"
+
+#: users/templates/users/login.html:15
+msgid "Forgot Password?"
+msgstr "Forgot Password?"
+
+#: users/templates/users/login.html:22
+msgid "Need An Account?"
+msgstr "Need An Account?"
+
+#: users/templates/users/login.html:22
+msgid "Sign Up Now"
+msgstr "Sign Up Now"
+
+#: users/templates/users/logout.html:3
+msgid "You have been logged out"
+msgstr "You have been logged out"
+
+#: users/templates/users/logout.html:6
+msgid "Log In Again"
+msgstr "Log In Again"
+
+#: users/templates/users/profile.html:9
+msgid "Profile Info"
+msgstr "Profile Info"
+
+#: users/templates/users/profile.html:12
+msgid "First Name"
+msgstr "First Name"
+
+#: users/templates/users/profile.html:18
+msgid "Last Name"
+msgstr "Last Name"
+
+#: users/templates/users/profile.html:24
+msgid "Enter Mobile No"
+msgstr "Enter Mobile No"
+
+#: users/templates/users/profile.html:48
+msgid "District"
+msgstr "District"
+
+#: users/templates/users/profile.html:54
+msgid "Select Country"
+msgstr "Select Country"
+
+#: users/templates/users/profile.html:60
+msgid "Select State"
+msgstr "Select State"
+
+#: users/templates/users/profile.html:70
+msgid "Update"
+msgstr "Update"
+
+#: users/templates/users/register.html:9
+msgid "Join Today"
+msgstr "Join Today"
+
+#: users/templates/users/register.html:14
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: users/templates/users/register.html:19
+msgid "Already Have An Account?"
+msgstr "Already Have An Account?"
+
+#: users/templates/users/register.html:19
+msgid "Sign In"
+msgstr "Sign In"
+
+#: users/views.py:14
+msgid "Your account has been created! You are now able to log in"
+msgstr "Your account has been created! You are now able to log in"
+
+#: users/views.py:31
+msgid "Your account has been updated!"
+msgstr "Your account has been updated!"
+
+#~ msgid "Comment Wright"
+#~ msgstr "Write a Comment!"
+
+#~ msgid "Last"
+#~ msgstr "Last"
