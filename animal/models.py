@@ -194,4 +194,4 @@ class Comments(models.Model):
         images = Post.objects.values_list('front_image', flat=True).filter(pk=self.animal_id)
         for image in images:
             image = image
-        return mark_safe('<img src="/media/%s" width="150" height="150" />' % image)
+        return mark_safe('<img src="%s" width="150" height="150" />' % image)
