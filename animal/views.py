@@ -18,7 +18,7 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 
 from animal.forms import PostCreateView, CommentCreateView
-from animal.models import Type, Post, LikeUnlike, Comments
+from animal.models import Type, Post, LikeUnlike, Comments, Group
 from django.utils.translation import gettext_lazy as _
 
 
@@ -30,20 +30,50 @@ def language(request):
 
 
 def home(request):
-    animal_list = Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) FROM 
-        animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
-        (SELECT count(*) FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
-        totalunlikes , (SELECT count(*) FROM animalselling.animal_comments WHERE animal_id = an_post.id AND 
-        `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
-        animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 and 
-        an_post.delete_status=0 order by add_time desc''')
+    group_id = request.POST.get('group')
+    breed_id = request.POST.get('breed')
+    if group_id:
+        if breed_id:
+            animal_list = Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) 
+            FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
+            (SELECT count(*) FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) 
+            as totalunlikes , (SELECT count(*) FROM animalselling.animal_comments WHERE animal_id = an_post.id AND 
+            `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
+            animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 
+            and an_post.delete_status=0 and an_post.animal_group=%s and an_post.animal_breed=%s order by add_time 
+            desc''', [group_id, breed_id])
+        else:
+            animal_list = Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) FROM 
+                animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
+                (SELECT count(*) FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
+                totalunlikes , (SELECT count(*) FROM animalselling.animal_comments WHERE animal_id = an_post.id AND 
+                `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
+                animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 and 
+                an_post.delete_status=0 and an_post.animal_group=%s order by add_time desc''', [group_id])
+    else:
+        animal_list = Post.objects.raw('''SELECT an_type.en_type ,an_type.in_type,an_post.*, (SELECT count(*) FROM 
+            animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=0) as totallikes, 
+            (SELECT count(*) FROM animalselling.animal_likeunlike WHERE animal_id = an_post.id AND `like_unlike`=1) as 
+            totalunlikes , (SELECT count(*) FROM animalselling.animal_comments WHERE animal_id = an_post.id AND 
+            `comment_status`=1 and dlt_status=0) as totalcomment FROM animalselling.animal_post as an_post join 
+            animalselling.animal_type as an_type on an_post.animal_breed = an_type.id where an_post.approved_status=1 and 
+            an_post.delete_status=0 order by add_time desc''')
     paginator = Paginator(animal_list, 12)  # Show 25 contacts per page.
 
     page_number = request.GET.get('page')
     animals = paginator.get_page(page_number)
     like_unlike = LikeUnlike.objects.all()
-
-    return render(request, 'animal_tmp/home.html', {'page_obj': animals, 'like_unlike': like_unlike})
+    groups = Group.objects.all()
+    if group_id:
+        types = Type.objects.filter(group_id=group_id)
+    else:
+        types = ''
+    if breed_id:
+        breed_id = breed_id
+    else:
+        breed_id = ''
+    return render(request, 'animal_tmp/home.html', {'page_obj': animals, 'like_unlike': like_unlike, 'groups': groups,
+                                                    'types': types, 'group_id': group_id, 'breed_id': breed_id})
 
 
 class PostListView(ListView):

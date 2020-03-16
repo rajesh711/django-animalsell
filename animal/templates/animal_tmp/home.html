@@ -2,9 +2,40 @@
 {% extends "animal_tmp/base.html" %}
 {% block content %}
 {% load static %}
+  {% load i18n %}
  <div class="section-heading">
  </div>
- <div class="col-lg-12">
+<div class="col-md-12">
+    <form action="{% url 'animal-list' %}" method="post"  id="search_animal" data-type-url="{% url 'ajax_load_type' %}">
+        {% csrf_token %}
+    <div class="row">
+            {% get_current_language as LANGUAGE_CODE %}
+            <div class="col-md-6">
+                <div class="form-group">
+               <select name="group" class="form-control group" id="group">
+                   <option value="">{% trans "Select Animal Group" %}</option>
+                   {% for group in groups %}
+                   <option value="{{ group.pk}}" {% if group.pk == group_id %} selected{% endif %}>
+                       {% if 'hi' == LANGUAGE_CODE %}{{ group.in_name }} {% else %} {{ group.en_name }} {% endif %}</option>
+                   {% endfor %}
+               </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+               <select name="breed" class="form-control breed" id="breed">
+                   <option value="">{% trans "Select Animal Breed" %}</option>
+                   {% for type in types %}
+                   <option value="{{ type.pk}}" {% if type.pk == breed_id %} selected{% endif %}>
+                       {% if 'hi' == LANGUAGE_CODE %}{{ type.in_type }} {% else %} {{ type.en_type }} {% endif %}</option>
+                   {% endfor %}
+               </select>
+                </div>
+            </div>
+    </div>
+    </form>
+    </div>
+ <div class="col-lg-12" style="margin-top:50px;">
      <div class="row display_animal">
          <div class="col-lg-12 display_pagination">
              <div class="row">
@@ -131,6 +162,11 @@
          </div>
      </div>
  </div>
+ {% if not page_obj%}
+<div class="col-md-12" style="margin-top:80px;">
+<p style="text-align:center;">{% trans "Animal not available" %}</p>
+    </div>
+{% endif %}
 
 
     <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"aria-hidden="true">
@@ -145,6 +181,23 @@
     </a>
 </div>
 <script>
+$( document ).ready(function() {
+     {% if group_id %}
+     $("#group option[value='{{ group_id }}']").attr('selected', 'selected');
+    {% endif %}
+     {% if breed_id %}
+     $("#breed option[value='{{ breed_id }}']").attr('selected', 'selected');
+    {% endif %}
+});
+
+$(document).on('change','.group', function(){
+$("#breed").prop("selectedIndex", -1);
+ $('form#search_animal').submit();
+  });
+
+$(document).on('change','.breed', function(){
+ $('form#search_animal').submit();
+});
 
 $(document).on('click','.like_unlike_animal', function(){
     var animalId = $(this).attr("data-animals-id");
@@ -270,6 +323,7 @@ $(document).on('click','.animal_comment', function(){
              location.reload(true);
         }
       });
+
  });
 </script>
 <div class="lodder_display_maddel">
