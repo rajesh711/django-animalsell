@@ -126,7 +126,7 @@ def like_unlike(request):
                             'like_data': like_data}
                 return JsonResponse(response)
         else:
-            return HttpResponse('Please login')
+            return HttpResponse('1')
     else:
         return redirect('animal-list')
 

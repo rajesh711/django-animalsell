@@ -215,20 +215,22 @@ $(document).on('click','.like_unlike_animal', function(){
         },
         success: function(response){
         $(".lodder_display_maddel").hide();
-
+         if(response == 1){
+          document.location.href ="{% url 'login' %}"
+         }else{
 
        current.parents('.like_unlike_parents').find('.display_like').html(response.like_count);
        current.parents('.like_unlike_parents').find('.display_unlike').html(response.unlike_count);
 
      if(response.like_data==0){
-   current.parents('.like_unlike_parents').find('.like-jon').find('i').addClass('fa-thumbs-up').addClass('active_like');
-       current.parents('.like_unlike_parents').find('.unlike-jon').find('i').removeClass('active_like');
+        current.parents('.like_unlike_parents').find('.like-jon').find('i').addClass('fa-thumbs-up').addClass('active_like');
+        current.parents('.like_unlike_parents').find('.unlike-jon').find('i').removeClass('active_like');
 
-       } else{
+      } else{
             current.parents('.like_unlike_parents').find('.unlike-jon').find('i').addClass('fa-thumbs-down').addClass('active_like');
-
             current.parents('.like_unlike_parents').find('.like-jon').find('i').removeClass('active_like');
 
+         }
          }
        },
         error: function () {
@@ -252,11 +254,8 @@ $(document).on('click','.animal_comment', function(){
         csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function(response){
-         $(".animal_comments_display").html(response);
+        $(".animal_comments_display").html(response);
         },
-        error: function () {
-            alert("error");
-        }
       });
   });
 
