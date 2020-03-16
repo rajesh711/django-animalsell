@@ -25,8 +25,9 @@ from django.utils.translation import gettext_lazy as _
 def language(request):
     lang = request.POST.get('animal_language')
     translation.activate(lang)
-    # return redirect(request.META.get('HTTP_REFERER'))
-    return redirect('animal-list')
+    url = request.META.get('HTTP_REFERER')
+    same_page = url.replace(request.LANGUAGE_CODE, lang)
+    return redirect(same_page)
 
 
 def home(request):
