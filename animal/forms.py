@@ -71,8 +71,7 @@ class PostCreateView(forms.ModelForm):
                ('6', 'Brown')]
     animal_color = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class': 'radio_field'}), choices=CHOICES,
                                      initial=3)
-
-    milk_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    milk_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     animal_group = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control animal_group',
                                                                 'id': 'animal_group'}),
                                      choices=[(group.id, str(group.en_name)) for group in load_group()],
@@ -85,7 +84,7 @@ class PostCreateView(forms.ModelForm):
     animal_milk = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control milkquantity',
                                                                'id': 'milkquantity'}),
                                     choices=[(milk, str(milk)) for milk in milk_list],
-                                    required=False, initial='1')
+                                    required=False, initial='0')
 
     user_state_id = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}),
                                       choices=[(state.id, str(state.name)) for state in load_state()],

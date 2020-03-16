@@ -463,18 +463,4 @@ msgstr "आपका खाता बना दिया गया है! अ�
 msgid "Your account has been updated!"
 msgstr "आपका खाता अपडेट कर दिया गया है!"
 
-#, fuzzy
-#~| msgid "Select Animal Group"
-#~ msgid "Select Group"
-#~ msgstr "पशु चुने"
 
-#, fuzzy
-#~| msgid "Select Animal Breed"
-#~ msgid "Select Bread"
-#~ msgstr "पशु की नस्ल चुने"
-
-#~ msgid "Comment Wright"
-#~ msgstr "वार्तालाप लिखे !"
-
-#~ msgid "Last"
-#~ msgstr "Last"

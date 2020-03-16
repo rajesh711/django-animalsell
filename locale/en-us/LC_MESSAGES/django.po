@@ -462,18 +462,3 @@ msgstr "Your account has been created! You are now able to log in"
 msgid "Your account has been updated!"
 msgstr "Your account has been updated!"
 
-#, fuzzy
-#~| msgid "Select Animal Group"
-#~ msgid "Select Group"
-#~ msgstr "Select Animal Group"
-
-#, fuzzy
-#~| msgid "Select Animal Breed"
-#~ msgid "Select Bread"
-#~ msgstr "Select Animal Breed"
-
-#~ msgid "Comment Wright"
-#~ msgstr "Write a Comment!"
-
-#~ msgid "Last"
-#~ msgstr "Last"
