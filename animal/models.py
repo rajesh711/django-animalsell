@@ -54,10 +54,10 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         # Opening the uploaded image
-        img1 = Image.open(self.front_image)
-        img2 = Image.open(self.back_image)
-        img3 = Image.open(self.left_image)
-        img4 = Image.open(self.right_image)
+        img1 = Image.open(self.front_image).convert('RGB')
+        img2 = Image.open(self.back_image).convert('RGB')
+        img3 = Image.open(self.left_image).convert('RGB')
+        img4 = Image.open(self.right_image).convert('RGB')
         output1 = BytesIO()
         # Resize/modify the image
         im1 = img1.resize((300, 300))

@@ -162,7 +162,6 @@ class PostCreate(LoginRequiredMixin, CreateView):
 #     model = Post
 #     template_name = 'animal_tmp/post_detail.html'
 
-@login_required
 def PostDetailView(request, pk=None):
     animalId = pk
     context = {

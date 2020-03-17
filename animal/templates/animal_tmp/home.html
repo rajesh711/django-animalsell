@@ -254,7 +254,7 @@ $(document).on('click','.animal_comment', function(){
         csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function(response){
-        $(".animal_comments_display").html(response);
+         $(".animal_comments_display").html(response);
         },
       });
   });
