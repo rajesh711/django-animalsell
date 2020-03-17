@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-16 11:55+0530\n"
+"POT-Creation-Date: 2020-03-17 16:33+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -306,28 +306,33 @@ msgstr "Rs."
 msgid "Animal Milk"
 msgstr "दूध(सुबह/शाम)"
 
-#: animal/templates/animal_tmp/home.html:152
-#: animal/templates/animal_tmp/user_posts.html:138
+#: animal/templates/animal_tmp/home.html:153
+#: animal/templates/animal_tmp/user_posts.html:139
 msgid "SOLD"
+msgstr "बिक गया"
+
+#: animal/templates/animal_tmp/home.html:157
+#: animal/templates/animal_tmp/user_posts.html:143
+msgid "NOT SOLD"
 msgstr "नहीं बिका"
 
-#: animal/templates/animal_tmp/home.html:167
+#: animal/templates/animal_tmp/home.html:173
 msgid "Animal not available"
 msgstr "पशु की नस्ल उपलब्ध नहीं है"
 
-#: animal/templates/animal_tmp/home.html:337
+#: animal/templates/animal_tmp/home.html:342
 msgid "first"
 msgstr "First"
 
-#: animal/templates/animal_tmp/home.html:338
+#: animal/templates/animal_tmp/home.html:343
 msgid "previous"
 msgstr "Previous"
 
-#: animal/templates/animal_tmp/home.html:350
+#: animal/templates/animal_tmp/home.html:355
 msgid "next"
 msgstr "Next"
 
-#: animal/templates/animal_tmp/home.html:351
+#: animal/templates/animal_tmp/home.html:356
 msgid "last"
 msgstr "Last"
 
@@ -347,39 +352,39 @@ msgstr "हां, हटाए"
 msgid "Cancel"
 msgstr "नहीं"
 
-#: animal/views.py:155
+#: animal/views.py:153
 msgid "f'Your animal description has been sent for admin approval"
 msgstr "आपके पशु का विवरण स्वीकृति के लिए भेजा गया है !"
 
-#: animal/views.py:198
+#: animal/views.py:195
 msgid "Comment has been approval successful"
 msgstr "Comment has been approval successful"
 
-#: animal/views.py:201
+#: animal/views.py:198
 msgid "Comment has been disapproval successful"
 msgstr "Comment has been disapproval successful"
 
-#: animal/views.py:217
+#: animal/views.py:214
 msgid "Animal has been approval successful"
 msgstr "Animal has been approval successful"
 
-#: animal/views.py:220
+#: animal/views.py:217
 msgid "Animal has been disapproval successful"
 msgstr "Animal has been disapproval successful"
 
-#: animal/views.py:237
+#: animal/views.py:234
 msgid "Animal has been delete successful"
 msgstr "Animal has been delete successful"
 
-#: animal/views.py:240
+#: animal/views.py:237
 msgid "Animal has been Active successful"
 msgstr "Animal has been Active successful"
 
-#: animal/views.py:275
+#: animal/views.py:272
 msgid "Success: Your comment has been sent for approval"
 msgstr "आपकी टिपण्णी (मैसेज) स्वीकृति के लिए भेजी गयी है!"
 
-#: animal/views.py:277
+#: animal/views.py:274
 msgid "Please Login"
 msgstr "कृपया खाता चालू करे"
 
@@ -462,5 +467,3 @@ msgstr "आपका खाता बना दिया गया है! अ�
 #: users/views.py:31
 msgid "Your account has been updated!"
 msgstr "आपका खाता अपडेट कर दिया गया है!"
-
-

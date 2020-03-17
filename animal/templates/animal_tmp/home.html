@@ -148,9 +148,15 @@
                                          <span class="display_comment">{{ animal.totalcomment }}</span>
                                      </div>
                                      <div class="like-jon" style="display: inline-block;">
-                                         <span class="badge " style=" font-size: 10px; background-color: #FF9933;  font-style:italic;color:#ffffff;border-radius: 20px;  width:50px;padding-top:5px;padding-left:3px; margin-left: -5px; padding-right: 5px;" >
+                                         {% if animal.sold_status == 0 %}
+                                         <span class="badge " style=" font-size: 10px; background-color: #FF9933;  font-style:italic;color:#ffffff;border-radius: 20px;  width:60px;padding-top:5px;padding-left:3px; margin-left: -5px; padding-right: 5px;" >
+                                             {% trans "NOT SOLD" %}
+                                         </span>
+                                         {% else %}
+                                         <span class="badge bg-success"   style=" font-size: 10px; font-style:italic;color:#ffffff;border-radius: 20px; margin-left: -5px; width:60px;padding-top:5px;padding-left:3px; padding-right: 7px;" >
                                              {% trans "SOLD" %}
                                          </span>
+                                         {% endif %}
                                      </div>
                                  </div>
                              </div>

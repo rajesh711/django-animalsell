@@ -274,6 +274,13 @@ def save_comments(request):
         return HttpResponse(_('Please Login'))
 
 
+def sold_animal(request):
+    animalId = request.POST.get('animalId')
+    sold_status = 1
+    Post.objects.filter(id=animalId).update(sold_status=sold_status)
+    return HttpResponse('your animal is sold')
+
+
 @login_required
 def UserPostListView(request):
     context = {

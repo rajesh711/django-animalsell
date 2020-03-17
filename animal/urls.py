@@ -18,6 +18,7 @@ urlpatterns = [
     path('like-unlike', views.like_unlike, name='ajax_like_unlike'),
     path('animal-comments', views.load_comments, name='ajax_comments'),
     path('animal-save-comment', views.save_comments, name='ajax_save_comment'),
+    path('animal-sold', views.sold_animal, name='ajax_sold_animal'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('animal_language', views.language, name='set_language'),
 ]
